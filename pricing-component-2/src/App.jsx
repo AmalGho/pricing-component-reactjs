@@ -1,9 +1,18 @@
+import React, {useState} from 'react';
 import './App.css';
 import styled from 'styled-components'
 import Pricing from './components/Pricing';
-import Toggle from './components/Toggle';
+import Toggle from './components/Toggle/Toggle';
+import Arrow from './images/arrow.png'
+
 
 function App() {
+
+  const [currentPrice, setPrice] = useState(false);
+  const monthly = [0, 15, 25];
+  const annually = [0, 150, 250];
+  const priceChanged = currentPrice ? annually : monthly;
+
 
   return (
     <div className="App">
@@ -12,7 +21,18 @@ function App() {
         <Header>
           Pricing
         </Header>
-        <Toggle />
+
+        <ArrowSection>
+          <ArrowImage>
+            <img src={Arrow} alt=''/>
+          </ArrowImage>
+          <ArrowSpan>
+            save 20%
+          </ArrowSpan>
+        </ArrowSection>
+
+        <Toggle currentPrice={currentPrice} setPrice={setPrice} />
+
         <CardContainer>
 
           <Pricing 
@@ -20,8 +40,8 @@ function App() {
             shadow = '#ffffff80'
             headerText='Basic'
             currency='$'
-            duration='m'
-            price={0}
+            duration= {monthly.includes(priceChanged[1]) ? 'm' : 'y'}
+            price={priceChanged[0]}
             buttonContent='Get Started'
             data= {[
               {text: "Store up to 20 song"},
@@ -37,8 +57,8 @@ function App() {
             shadow = '#ffffff80'
             headerText='Professional'
             currency='$'
-            duration='m'
-            price={15}
+            duration= {monthly.includes(priceChanged[1]) ? 'm' : 'y'}
+            price={priceChanged[1]}
             buttonContent='Get Started'
             data= {[
               {text: "Everything in Basic"},
@@ -54,8 +74,8 @@ function App() {
             shadow = '#ffffff80'
             headerText='Team'
             currency='$'
-            duration='m'
-            price={25}
+            duration= {monthly.includes(priceChanged[2]) ? 'm' : 'y'}
+            price={priceChanged[2]}
             buttonContent='Get Started'
             data= {[
               {text: "Everything in Professional"},
@@ -86,6 +106,52 @@ const MainContainer = styled.div`
   position: relative;
 `;
 
+const ArrowSection = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  color: #fff;
+  position: absolute;
+  right: 15rem;
+  top: 6rem;
+  animation: shake 3s infinite;
+
+  @keyframes shake {
+    10%, 90% {
+        transform: translate3d(-1px, 0, 0);
+    }
+    
+    20%, 80% {
+        transform: translate3d(2px, 0, 0);
+    }
+
+    30%, 50%, 70% {
+        transform: translate3d(-4px, 0, 0);
+    }
+
+    40%, 60% {
+        transform: translate3d(4px, 0, 0);
+    }
+  }
+`;
+
+const ArrowImage = styled.div`
+  img {
+    width: 30%;
+    transform: rotate(10deg);
+  }
+`;
+
+const ArrowSpan = styled.div`
+  font-size: 1.5rem;
+  position: absolute;
+  right: 7rem;
+  top: -1rem;
+  font-family: 'Caveat', cursive;
+  transform: rotate(10deg);
+`;
+
 const CardContainer = styled.div`
   width: 100%;
   display: flex;
@@ -98,7 +164,6 @@ const Header = styled.div`
   color: #fff;
   font-size: 3rem;
   letter-spacing: 0.1rem;
-  margin-bottom: 2rem;
   position: absolute;
   top: 2rem;
 `;

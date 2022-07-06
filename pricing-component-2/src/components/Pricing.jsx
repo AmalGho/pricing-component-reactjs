@@ -26,7 +26,7 @@ const Pricing = ({
                     <span>{price}</span>
                 </Price>
                 <Duration>
-                    <span>{duration === 'm' ? '/ mo' : '/ yr'}</span>
+                    <span>{duration === 'm' ? '/ month' : '/ year'}</span>
                 </Duration>
                 </PriceContainer>
             </PricingContainer>
@@ -55,17 +55,20 @@ const MainContainer = styled.div`
     @import url('https://fonts.googleapis.com/css2?family=Lobster&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Tajawal:wght@200;300;400;500;700;800;900&family=Varela+Round&display=swap');
     font-family: 'Roboto', sans-serif;
     width: 18rem;
-    min-height: 28rem;
+    min-height: 25rem;
     height: max-content;
     background-color: #fff;
     display: flex;
     flex-direction: column;
-    border-radius: 0.2rem;
+    border-radius: 1rem;
     box-shadow: 0px 0px 10px ${(props) => props.shadow};
     background-color: ${(props) => props.color};
+    margin-top: 6rem;
+
     &:hover {
-        margin-bottom: 2rem;
+        margin-top: 4rem;
     }
+
     transition: all 0.5s ease-in-out;
     padding: 2rem;
     position: relative;
@@ -82,7 +85,7 @@ const PricingContainer = styled.div`
     justify-content: center;
     flex-direction: column;
     margin-top: 2rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 `;
 
 const PriceContainer = styled.div`
@@ -124,7 +127,7 @@ const Button = styled.button`
     align-items: center;
     background-color: #000;
     border: none;
-    border-radius: 0.2rem;
+    border-radius: 0.5rem;
     color: #fff;
     padding: 0.7rem 1rem;
     cursor: pointer;
