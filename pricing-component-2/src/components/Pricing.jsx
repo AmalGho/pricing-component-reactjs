@@ -65,7 +65,8 @@ const MainContainer = styled.div`
     background-color: ${(props) => props.color};
     margin-top: 6rem;
 
-    &:hover {
+    &:hover,
+    &:nth-child(2) {
         margin-top: 4rem;
     }
 
